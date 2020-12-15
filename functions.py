@@ -76,13 +76,31 @@ def SaveToCSV(username,entry):
     fields = ['Id','Username',str(creation_date)]
     rows = entry 
     try:
-        with open(csv_name, 'r') as f:
-            pass
-        print('uparxei!')
-    except:
+        f = open(csv_name, 'r')
+        result = find_unfollowers(csv_name,entry,f)
+        f.close()
+        return result
+    except FileNotFoundError:
         with open(csv_name, 'w') as f:
-            write = csv.writer(f) 
+            write = csv.writer(f ,lineterminator ='\n') 
             write.writerow(fields) 
             write.writerows(rows)
+        result = []
+        return result
     
+
+def find_unfollowers(csv_name,follower_list,file):
+    f = file
+    old_csv = csv.reader(f)
+    next(old_csv)
+ 
+    old_list = []
+    for line in old_csv:
+        old_list.append(line[1]) 
+
+    new_list = []
+    for item in follower_list:
+        new_list.append(item[1])
+    unfollowers = list(set(old_list) - set(new_list))
+    return unfollowers
 
