@@ -41,10 +41,10 @@ def get_followers(username,ftype,amount,driver):
     driver.get("https://www.instagram.com/"+username)
     sleep(2)
     driver.find_element_by_xpath('//a[contains(@href, "%s")]' % ftype).click()
-    #scr2 = driver.find_element_by_xpath('//*[@id="react-root"]/section/main/div/header/section/ul/li[2]/a')
-    #sleep(2)
-    #text1 = scr2.text
-    #print(text1)
+    scr2 = driver.find_element_by_xpath('//*[@id="react-root"]/section/main/div/header/section/ul/li[2]/a')
+    sleep(2)
+    text1 = scr2.text
+    print(text1)
     final_fol_list = []
     for i in range(1,amount+1):
         scr1 = driver.find_element_by_xpath('/html/body/div[5]/div/div/div[2]/ul/div/li[%s]' % i)
