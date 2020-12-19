@@ -21,6 +21,7 @@ def login(username, password, driver):
     		sleep(1)
     		count = count + 1
     		print(count)
+    #change Αποδοχη το Accept 
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//button[contains(.,'Αποδοχή')]"))).click()
     username_element.send_keys(username)
     password_element.send_keys(password)
@@ -31,6 +32,7 @@ def login(username, password, driver):
 
 #ftype = "followers" / "following"
 def get_followers(username,ftype,amount,driver):
+    #change Οχι τωρα to Not now
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//button[contains(.,'Όχι τώρα')]"))).click()
     sleep(3)
     driver.get("https://www.instagram.com/"+username)
@@ -79,12 +81,18 @@ def SaveToCSV(username,entry):
         f = open(csv_name, 'r')
         result = find_unfollowers(csv_name,entry,f)
         f.close()
+        with open(csv_name, 'w') as f:
+            write = csv.writer(f ,lineterminator ='\n') 
+            write.writerow(fields) 
+            write.writerows(rows)
+        f.close()
         return result
     except FileNotFoundError:
         with open(csv_name, 'w') as f:
             write = csv.writer(f ,lineterminator ='\n') 
             write.writerow(fields) 
             write.writerows(rows)
+        f.close()
         result = []
         return result
     
