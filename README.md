@@ -3,3 +3,5 @@ This tool allows you to save your current instagram followers and compare with o
 You can also use it to auto-send/spam comments in any post!
 
 Currently, theres a GUI thats a work in progress. For Developers its recommended to run the dev_main.py
+
+For English users 3 changes must be done in the function.py , follow the instructions!

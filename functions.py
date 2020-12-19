@@ -21,7 +21,9 @@ def login(username, password, driver):
     		sleep(1)
     		count = count + 1
     		print(count)
-    #change Αποδοχη το Accept 
+    #
+    #change Αποδοχη το Accept <------
+    #
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//button[contains(.,'Αποδοχή')]"))).click()
     username_element.send_keys(username)
     password_element.send_keys(password)
@@ -30,20 +32,19 @@ def login(username, password, driver):
     login_button.click()
     sleep(4)
 
-#ftype = "followers" / "following"
 def get_followers(username,ftype,amount,driver):
-    #change Οχι τωρα to Not now
+    #
+    #Change Οχι τωρα to Not Now <------
+    #
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//button[contains(.,'Όχι τώρα')]"))).click()
     sleep(3)
     driver.get("https://www.instagram.com/"+username)
     sleep(2)
     driver.find_element_by_xpath('//a[contains(@href, "%s")]' % ftype).click()
-    
-    #Για να βρισκει και να τυπωνει ποσους συνολικους followers εχεις
-    scr2 = driver.find_element_by_xpath('//*[@id="react-root"]/section/main/div/header/section/ul/li[2]/a')
-    sleep(2)
-    text1 = scr2.text
-    print(text1)
+    #scr2 = driver.find_element_by_xpath('//*[@id="react-root"]/section/main/div/header/section/ul/li[2]/a')
+    #sleep(2)
+    #text1 = scr2.text
+    #print(text1)
     final_fol_list = []
     for i in range(1,amount+1):
         scr1 = driver.find_element_by_xpath('/html/body/div[5]/div/div/div[2]/ul/div/li[%s]' % i)
@@ -65,9 +66,11 @@ def addcomment(comment,link,number,driver):
         commentArea.click()
         commentArea = driver.find_element_by_class_name('Ypffh')
         commentArea.send_keys(comment)
+        #
+        #Change Δημοσιευση to Comment  <------
+        #
         WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.XPATH, "//button[contains(.,'Δημοσίευση')]"))).click()
-        #Button = driver.find_element_by_xpath('/html/body/div/section/main/div/div/article/div[3]/section[3]/div/form/button')
-        #Button.click()
+        #Button = driver.find_element_by_xpath('/html/body/div/section/main/div/div/article/div[3]/section[3]/div/form/button').click()
         comment_number+=1
         print(comment_number)
         sleep(random_delay)

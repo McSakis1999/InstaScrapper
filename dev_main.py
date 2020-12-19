@@ -18,15 +18,15 @@ insta.login(username,password,driver)
 
 #Run one of the functions at a time (addcoment or getfollowers)
 '''
-comment_count = 100    #change it to the number of comments you want to post
-link = "https://www.instagram.com/p/CIQiZcVFzUq/"
-comment = "@sakis_mtsk"
+comment_count = 1   #change it to the number of comments you want to post
+link = ""
+comment = ""
 insta.addcomment(comment,link,comment_count,driver)
 
 '''
-follower_count = 7  #change it to your number of followers
+follower_count = 1  #change it to your number of followers
 follower_list = insta.get_followers(username,ftype,follower_count,driver)
 result = insta.SaveToCSV(username,follower_list)
 print(result)
 
-#driver.close()
+driver.close()
